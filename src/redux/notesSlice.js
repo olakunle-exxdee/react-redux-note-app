@@ -13,8 +13,11 @@ const notesSlice = createSlice({
         title: action.payload.title,
         isEdit: false,
       };
-
-      state.push(newNote);
+      if (newNote.title) {
+        state.push(newNote);
+      } else {
+        console.log("enter value");
+      }
     },
     deleteNotes: (state, action) => {
       const filteredNote = state.filter(
@@ -24,11 +27,18 @@ const notesSlice = createSlice({
       return filteredNote;
     },
     searchNotes: (state, action) => {
+      console.log(action.type);
       const searchNote = state.filter((note) =>
         note.title.toLowerCase().includes(action.payload.title)
       );
 
-      return searchNote;
+      console.log(searchNote);
+      if (searchNote) {
+        const search = searchNote.map((note) => note);
+        return search;
+      } else {
+        return state.map((note) => note);
+      }
     },
     editNotes: (state, action) => {
       const index = state.findIndex((item) => item.id === action.payload.id);
