@@ -1,38 +1,133 @@
+@import url("https://fonts.googleapis.com/css2?family=PT+Sans&display=swap");
+
+body[data-theme="light"] {
+  --background-color: #ffffff;
+  --primary-color: #f6f6f6;
+  --font-color: #000000;
+  --border: #e6e6e6;
+}
+
+body[data-theme="dark"] {
+  --background-color: #0e182a;
+  --primary-color: #142035;
+  --font-color: #ffffff;
+  --border: #2f3d56;
+}
+
 .App {
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+body {
+  margin: 0;
+  font-family: "PT Sans", sans-serif;
+  background-color: var(--background-color);
+  color: var(--font-color);
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.header {
   display: flex;
-  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  justify-content: space-between;
+}
+
+.dark-mode {
+  background-color: black;
+}
+
+.dark-mode h1 {
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.container {
+  max-width: 960px;
+  margin-right: auto;
+  margin-left: auto;
+  padding-right: 15px;
+  padding-left: 15px;
+  min-height: 100vh;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.notes-list {
+  display: grid;
+  grid-gap: 1rem;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+}
+
+.note.new {
+  background-color: var(--primary-color);
+}
+
+textarea {
+  border: none;
+  resize: none;
+  font-family: "PT Sans", sans-serif;
+  background-color: var(--primary-color);
+}
+
+textarea:focus {
+  outline: none;
+  font-family: "PT Sans", sans-serif;
+  background-color: var(--primary-color);
+  color: var(--font-color);
+}
+
+.save {
+  background-color: #e1e1e1;
+  border: none;
+  border-radius: 15px;
+  padding: 5px 10px 5px 10px;
+}
+
+.save:hover {
+  background-color: #ededed;
+  cursor: pointer;
+}
+
+.note {
+  border-radius: 4px;
+  padding: 1rem;
+  min-height: 170px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  white-space: pre-wrap;
+  background-color: var(--primary-color);
+  border: 1px solid var(--border);
+}
+
+.note-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.delete-icon {
+  cursor: pointer;
+}
+
+.search {
+  display: flex;
+  align-items: center;
+  border-radius: 10px;
+  padding: 5px;
+  margin-bottom: 1.5em;
+}
+
+.search input {
+  border: 1px solid var(--border);
+  width: 100%;
+  padding: 0.5rem 0;
+  border-radius: 4px;
+}
+
+.search input:focus {
+  outline: none;
+}
+.btn {
+  cursor: pointer;
+  background: none;
+  outline: none;
+  border: none;
+  transition: all 200ms ease-in;
 }
