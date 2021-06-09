@@ -1,16 +1,12 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { addNotes } from "../redux/notesSlice";
 
 const AddNewNotes = () => {
   const [notes, setNotes] = useState("");
 
   const dispatch = useDispatch();
-
-  const stat = useSelector((state) => state.notes);
-
-  console.log(stat);
 
   const handleChange = (e) => {
     setNotes(e.target.value);
@@ -25,10 +21,6 @@ const AddNewNotes = () => {
 
     setNotes("");
   };
-
-  useEffect(() => {
-    localStorage.setItem("notes", JSON.stringify(stat));
-  }, [stat]);
 
   return (
     <div className="note new">

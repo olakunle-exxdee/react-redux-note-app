@@ -1,12 +1,18 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialState = [];
-localStorage.setItem("notes", JSON.stringify(initialState));
+const initialState = [
+  { id: 1, title: "olakunle", isEdit: false },
+  { id: 2, title: "saheed", isEdit: false },
+  { id: Date.now(), title: "ogunsolu", isEdit: false },
+];
 
 const notesSlice = createSlice({
   name: "notes",
   initialState,
   reducers: {
+    clearAllNote: (state, action) => {
+      return (state = []);
+    },
     addNotes: (state, action) => {
       const newNote = {
         id: Date.now(),
@@ -23,33 +29,30 @@ const notesSlice = createSlice({
       const filteredNote = state.filter(
         (item) => item.id !== action.payload.id
       );
-      console.log(filteredNote);
+
       return filteredNote;
     },
     searchNotes: (state, action) => {
-      console.log(action.type);
       const searchNote = state.filter((note) =>
         note.title.toLowerCase().includes(action.payload.title)
       );
-
-      console.log(searchNote);
-      if (searchNote) {
-        const search = searchNote.map((note) => note);
-        return search;
-      } else {
-        return state.map((note) => note);
-      }
+      return searchNote;
     },
     editNotes: (state, action) => {
       const index = state.findIndex((item) => item.id === action.payload.id);
-      state[index].isEdit = action.payload.isEdit;
-      console.log(index, "index");
-      console.log(action, "action");
-      console.log(state, "state");
+      console.log(index);
+      console.log(state[index].title);
+
+      const updateNote = {
+        id: state[index].id,
+        title: state[index].title,
+      };
+      console.log(updateNote);
+      return (state[index].title = action.payload.title);
     },
   },
 });
 
-export const { addNotes, deleteNotes, searchNotes, editNotes } =
+export const { addNotes, deleteNotes, searchNotes, editNotes, clearAllNote } =
   notesSlice.actions;
 export default notesSlice.reducer;

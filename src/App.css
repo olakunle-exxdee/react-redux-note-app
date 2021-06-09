@@ -23,6 +23,7 @@ body {
   font-family: "PT Sans", sans-serif;
   background-color: var(--background-color);
   color: var(--font-color);
+  transition: all 150ms ease-in;
 }
 
 .header {
@@ -130,4 +131,13 @@ textarea:focus {
   outline: none;
   border: none;
   transition: all 200ms ease-in;
+}
+.btn1 {
+  cursor: pointer;
+  background-color: red;
+  outline: none;
+  border: none;
+  transition: all 200ms ease-in;
+  color: whitesmoke;
+  padding: 0.2rem 0.5rem;
 }
