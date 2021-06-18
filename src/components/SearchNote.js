@@ -1,4 +1,5 @@
 import React from "react";
+
 import { useDispatch } from "react-redux";
 import { searchNotes } from "../redux/notesSlice";
 
@@ -12,6 +13,7 @@ const SearchNote = () => {
       })
     );
   };
+
   return (
     <div className="search">
       <input onChange={handleChange} type="text" />

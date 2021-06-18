@@ -5,11 +5,13 @@ import { addNotes } from "../redux/notesSlice";
 
 const AddNewNotes = () => {
   const [notes, setNotes] = useState("");
-
+  const characterLimit = 200;
   const dispatch = useDispatch();
 
   const handleChange = (e) => {
-    setNotes(e.target.value);
+    if (characterLimit - e.target.value.length >= 0) {
+      setNotes(e.target.value);
+    }
   };
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -22,6 +24,7 @@ const AddNewNotes = () => {
     setNotes("");
   };
 
+  const word = characterLimit - notes.length <= 1 ? " word " : " words ";
   return (
     <div className="note new">
       <textarea
@@ -32,6 +35,13 @@ const AddNewNotes = () => {
         placeholder="Add a note..."
         value={notes}
       ></textarea>
+      {notes && (
+        <small>
+          {characterLimit - notes.length}
+          {word}
+          Remaining
+        </small>
+      )}
       <div className="note-footer">
         <button onClick={handleSubmit} className="save">
           save

@@ -31,13 +31,10 @@ body {
   align-items: center;
   justify-content: space-between;
 }
-
-.dark-mode {
-  background-color: black;
-}
-
-.dark-mode h1 {
-  color: white;
+.header-heading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .container {
@@ -59,14 +56,14 @@ body {
   background-color: var(--primary-color);
 }
 
-textarea {
+#textarea {
   border: none;
   resize: none;
   font-family: "PT Sans", sans-serif;
   background-color: var(--primary-color);
 }
 
-textarea:focus {
+#textarea:focus {
   outline: none;
   font-family: "PT Sans", sans-serif;
   background-color: var(--primary-color);
@@ -103,7 +100,8 @@ textarea:focus {
   justify-content: space-between;
 }
 
-.delete-icon {
+.delete-icon,
+.edit-icon {
   cursor: pointer;
 }
 
@@ -125,6 +123,7 @@ textarea:focus {
 .search input:focus {
   outline: none;
 }
+
 .btn {
   cursor: pointer;
   background: none;
@@ -139,5 +138,25 @@ textarea:focus {
   border: none;
   transition: all 200ms ease-in;
   color: whitesmoke;
-  padding: 0.2rem 0.5rem;
+  padding: 0.75em;
+  margin: 1rem 0;
+}
+
+.modal {
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(6, 12, 71, 0.281);
+  display: grid;
+  place-items: center;
+}
+.modal textarea {
+  width: 300px;
+  margin: 0 auto;
+  border: none;
+  resize: none;
+  font-family: "PT Sans", sans-serif;
+  background-color: var(--background-color);
 }

@@ -1,23 +1,17 @@
-import React from "react";
 import { useDispatch } from "react-redux";
-import { deleteNotes, editNotes } from "../redux/notesSlice";
-import { AiFillDelete, AiOutlineEdit } from "react-icons/ai";
+import { deleteNotes } from "../redux/notesSlice";
+import { AiFillDelete, AiFillEdit } from "react-icons/ai";
+import NoteModal from "./NoteModal";
+import { useState } from "react";
 
-const NoteList = ({ id, title, isEdit }) => {
+const NoteList = ({ id, title }) => {
   const dispatch = useDispatch();
+  const [showModal, setShowModal] = useState(false);
 
   const handleDelete = () => {
     dispatch(
       deleteNotes({
         id: id,
-      })
-    );
-  };
-  const handleEdit = () => {
-    dispatch(
-      editNotes({
-        id: id,
-        isEdit: !isEdit,
       })
     );
   };
@@ -32,13 +26,22 @@ const NoteList = ({ id, title, isEdit }) => {
           size="1.5rem"
           color="red"
         />
-        <AiOutlineEdit
-          onClick={handleEdit}
-          className="delete-icon"
+        <AiFillEdit
+          className="edit-icon"
           size="1.5rem"
           color="green"
+          onClick={() => {
+            setShowModal(!showModal);
+          }}
         />
       </div>
+      <NoteModal
+        key={id}
+        id={id}
+        title={title}
+        showModal={showModal}
+        setShowModal={setShowModal}
+      />
     </div>
   );
 };
