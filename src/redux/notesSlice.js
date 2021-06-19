@@ -19,13 +19,29 @@ const notesSlice = createSlice({
         return console.log("enter  value");
       }
       if (!indexNotes) {
+        let date = new Date();
         state.push({
           id: Date.now(),
           title: action.payload.title,
+          date: date.toLocaleString("en-US", {
+            day: "numeric",
+            month: "short",
+            year: "numeric",
+            hour: "numeric",
+            minute: "numeric",
+          }),
         });
       } else {
+        let date = new Date();
         indexNotes.id = action.payload.id;
         indexNotes.title = action.payload.title;
+        indexNotes.date = date.toLocaleString("en-US", {
+          day: "numeric",
+          month: "short",
+          year: "numeric",
+          hour: "numeric",
+          minute: "numeric",
+        });
       }
     },
     deleteNotes: (state, action) => {

@@ -23,7 +23,7 @@ const NoteItem = () => {
               key={note.id}
               id={note.id}
               title={note.title}
-              isEdit={note.isEdit}
+              date={note.date}
             />
           );
         })}

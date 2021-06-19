@@ -8,6 +8,7 @@ const SearchNote = ({ handleChange }) => {
           handleChange(e.target.value);
         }}
         type="text"
+        placeholder="Search"
       />
     </div>
   );
