@@ -26,6 +26,7 @@ function App() {
     <div className="App">
       <div className="container">
         <Header />
+
         <NoteItem />
         <button className="btn1" onClick={handleClearAllNote}>
           clear all

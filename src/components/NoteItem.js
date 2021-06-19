@@ -7,6 +7,7 @@ import SearchNote from "./SearchNote";
 
 const NoteItem = () => {
   const [title, setTitle] = useState("");
+
   const notes = useSelector((state) => state.notes);
 
   const filteredNote = notes.filter((note) =>
@@ -16,6 +17,7 @@ const NoteItem = () => {
   return (
     <>
       <SearchNote handleChange={setTitle} />
+
       <div className="notes-list">
         {filteredNote.map((note) => {
           return (

@@ -16,7 +16,7 @@ const notesSlice = createSlice({
       const indexNotes = state.find((item) => item.id === action.payload.id);
 
       if (action.payload.title === "") {
-        return console.log("enter  value");
+        return;
       }
       if (!indexNotes) {
         let date = new Date();
