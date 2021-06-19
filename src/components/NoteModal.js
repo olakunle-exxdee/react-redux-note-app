@@ -25,7 +25,6 @@ const NoteModal = ({ showModal, id, title, setShowModal }) => {
     setShowModal(false);
   };
 
-  console.log("submitted", editedNotes);
   return (
     <>
       {showModal && (

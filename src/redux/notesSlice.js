@@ -35,22 +35,9 @@ const notesSlice = createSlice({
 
       return filteredNote;
     },
-    searchNotes: (state, action) => {
-      const searchNote = state.includes(
-        (note) => note.title.toLowerCase() === action.payload.title
-      );
-
-      return searchNote;
-    },
   },
 });
 
-export const {
-  addNotes,
-  deleteNotes,
-  searchNotes,
-  clearAllNote,
-  updateNotes,
-  replaceNote,
-} = notesSlice.actions;
+export const { addNotes, deleteNotes, clearAllNote, updateNotes, replaceNote } =
+  notesSlice.actions;
 export default notesSlice.reducer;

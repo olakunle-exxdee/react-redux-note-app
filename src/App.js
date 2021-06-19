@@ -4,7 +4,7 @@ import NoteItem from "./components/NoteItem";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
-
+// import SearchNote from "./components/SearchNote";
 import { clearAllNote } from "./redux/notesSlice";
 import { fetchNoteData, sendNoteData } from "./redux/noteActions";
 function App() {
@@ -13,7 +13,6 @@ function App() {
     dispatch(clearAllNote());
   };
   const notes = useSelector((state) => state.notes);
-  console.log(notes, "apptNN");
 
   useEffect(() => {
     dispatch(fetchNoteData());

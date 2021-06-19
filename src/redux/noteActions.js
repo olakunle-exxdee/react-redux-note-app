@@ -11,7 +11,6 @@ export const fetchNoteData = () => {
         throw new Error("fetching notes failed");
       }
 
-      console.log(data, "responsedata");
       return data;
     };
 
