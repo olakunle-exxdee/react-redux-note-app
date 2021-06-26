@@ -14,7 +14,7 @@ export const fetchNoteDataAsync = createAsyncThunk(
     if (data === null) {
       return [];
     }
-    console.log(data.notes, "notes");
+
     return data.notes;
   }
 );
