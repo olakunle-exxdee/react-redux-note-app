@@ -18,28 +18,28 @@ export const fetchNoteDataAsync = createAsyncThunk(
     return data.notes;
   }
 );
-export const addNotesDataAsync = createAsyncThunk(
-  "notes/addNotesDataAsync",
-  async (notes) => {
-    const addNoteAsync = async () => {
-      const response = await fetch(
-        "https://note-app-olakunle-exxdee-default-rtdb.firebaseio.com/notes.json",
-        { method: "PUT", body: JSON.stringify(notes) }
-      );
+// export const addNotesDataAsync = createAsyncThunk(
+//   "notes/addNotesDataAsync",
+//   async (notes) => {
+//     const addNoteAsync = async () => {
+//       const response = await fetch(
+//         "https://note-app-olakunle-exxdee-default-rtdb.firebaseio.com/notes.json",
+//         { method: "PUT", body: JSON.stringify(notes) }
+//       );
 
-      if (!response.ok) {
-        throw new Error("sending notes failed");
-      }
-    };
+//       if (!response.ok) {
+//         throw new Error("sending notes failed");
+//       }
+//     };
 
-    try {
-      await addNoteAsync();
-      console.log(addNoteAsync());
-    } catch (error) {
-      console.log(error);
-    }
-  }
-);
+//     try {
+//       await addNoteAsync();
+//       console.log(addNoteAsync());
+//     } catch (error) {
+//       console.log(error);
+//     }
+//   }
+// );
 
 const notesSlice = createSlice({
   name: "notes",
@@ -82,9 +82,6 @@ const notesSlice = createSlice({
   extraReducers: {
     [fetchNoteDataAsync.fulfilled]: (state, action) => {
       return { ...state, notes: action.payload };
-    },
-    [addNotesDataAsync.fulfilled]: (state, action) => {
-      console.log(action.meta.arg.notes, "actions");
     },
   },
 });

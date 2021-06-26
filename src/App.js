@@ -4,11 +4,7 @@ import NoteItem from "./components/NoteItem";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
-import {
-  clearAllNote,
-  fetchNoteDataAsync,
-  addNotesDataAsync,
-} from "./redux/notesSlice";
+import { clearAllNote, fetchNoteDataAsync } from "./redux/notesSlice";
 import { sendNoteData } from "./redux/noteActions";
 
 function App() {
@@ -22,9 +18,9 @@ function App() {
     dispatch(fetchNoteDataAsync());
   }, [dispatch]);
 
-  useEffect(() => {
-    dispatch(addNotesDataAsync(notes));
-  }, [dispatch, notes]);
+  // useEffect(() => {
+  //   dispatch(addNotesDataAsync(notes));
+  // }, [dispatch, notes]);
 
   useEffect(() => {
     dispatch(sendNoteData(notes));
