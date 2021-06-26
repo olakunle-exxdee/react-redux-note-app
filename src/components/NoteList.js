@@ -4,7 +4,7 @@ import { AiFillDelete, AiFillEdit } from "react-icons/ai";
 import NoteModal from "./NoteModal";
 import { useState } from "react";
 
-const NoteList = ({ id, title, date }) => {
+const NoteList = ({ id, title }) => {
   const dispatch = useDispatch();
   const [showModal, setShowModal] = useState(false);
 
@@ -26,7 +26,7 @@ const NoteList = ({ id, title, date }) => {
           size="1.5rem"
           color="red"
         />
-        <small>{date}</small>
+
         <AiFillEdit
           className="edit-icon"
           size="1.5rem"

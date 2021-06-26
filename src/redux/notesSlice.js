@@ -1,55 +1,90 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+
+export const fetchNoteDataAsync = createAsyncThunk(
+  "notes/fetchNoteDataAsync",
+  async () => {
+    const response = await fetch(
+      "https://note-app-olakunle-exxdee-default-rtdb.firebaseio.com/notes.json"
+    );
+    const data = await response.json();
+
+    if (!response.ok) {
+      throw new Error("fetching notes failed");
+    }
+    if (data === null) {
+      return [];
+    }
+    console.log(data.notes, "notes");
+    return data.notes;
+  }
+);
+export const addNotesDataAsync = createAsyncThunk(
+  "notes/addNotesDataAsync",
+  async (notes) => {
+    const addNoteAsync = async () => {
+      const response = await fetch(
+        "https://note-app-olakunle-exxdee-default-rtdb.firebaseio.com/notes.json",
+        { method: "PUT", body: JSON.stringify(notes) }
+      );
+
+      if (!response.ok) {
+        throw new Error("sending notes failed");
+      }
+    };
+
+    try {
+      await addNoteAsync();
+      console.log(addNoteAsync());
+    } catch (error) {
+      console.log(error);
+    }
+  }
+);
 
 const notesSlice = createSlice({
   name: "notes",
-  initialState: [],
+  initialState: {
+    notes: [],
+  },
   reducers: {
     clearAllNote: (state) => {
-      state = [];
-      return state;
+      return { ...state, notes: [] };
     },
     replaceNote: (state, action) => {
-      state = action.payload.notes;
-      return state;
+      return { ...state, notes: action.payload.notes };
     },
     addNotes: (state, action) => {
-      const indexNotes = state.find((item) => item.id === action.payload.id);
+      const indexNotes = state.notes.find(
+        (item) => item.id === action.payload.id
+      );
 
       if (action.payload.title === "") {
         return;
       }
       if (!indexNotes) {
-        let date = new Date();
-        state.push({
+        state.notes.push({
           id: Date.now(),
           title: action.payload.title,
-          date: date.toLocaleString("en-US", {
-            day: "numeric",
-            month: "short",
-            year: "numeric",
-            hour: "numeric",
-            minute: "numeric",
-          }),
         });
       } else {
-        let date = new Date();
         indexNotes.id = action.payload.id;
         indexNotes.title = action.payload.title;
-        indexNotes.date = date.toLocaleString("en-US", {
-          day: "numeric",
-          month: "short",
-          year: "numeric",
-          hour: "numeric",
-          minute: "numeric",
-        });
       }
     },
     deleteNotes: (state, action) => {
-      const filteredNote = state.filter(
+      const filteredNote = state.notes.filter(
         (item) => item.id !== action.payload.id
       );
 
-      return filteredNote;
+      return { ...state, notes: filteredNote };
+    },
+  },
+  extraReducers: {
+    [fetchNoteDataAsync.fulfilled]: (state, action) => {
+      return { ...state, notes: action.payload };
+    },
+    [addNotesDataAsync.fulfilled]: (state, action) => {
+      console.log(action.meta.arg.notes, "actions");
     },
   },
 });

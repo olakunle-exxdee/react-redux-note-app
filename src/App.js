@@ -4,9 +4,13 @@ import NoteItem from "./components/NoteItem";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
-// import SearchNote from "./components/SearchNote";
-import { clearAllNote } from "./redux/notesSlice";
-import { fetchNoteData, sendNoteData } from "./redux/noteActions";
+import {
+  clearAllNote,
+  fetchNoteDataAsync,
+  addNotesDataAsync,
+} from "./redux/notesSlice";
+import { sendNoteData } from "./redux/noteActions";
+
 function App() {
   const dispatch = useDispatch();
   const handleClearAllNote = () => {
@@ -15,8 +19,12 @@ function App() {
   const notes = useSelector((state) => state.notes);
 
   useEffect(() => {
-    dispatch(fetchNoteData());
+    dispatch(fetchNoteDataAsync());
   }, [dispatch]);
+
+  useEffect(() => {
+    dispatch(addNotesDataAsync(notes));
+  }, [dispatch, notes]);
 
   useEffect(() => {
     dispatch(sendNoteData(notes));
@@ -26,7 +34,6 @@ function App() {
     <div className="App">
       <div className="container">
         <Header />
-
         <NoteItem />
         <button className="btn1" onClick={handleClearAllNote}>
           clear all

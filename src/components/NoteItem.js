@@ -8,7 +8,7 @@ import SearchNote from "./SearchNote";
 const NoteItem = () => {
   const [title, setTitle] = useState("");
 
-  const notes = useSelector((state) => state.notes);
+  const notes = useSelector((state) => state.notes.notes);
 
   const filteredNote = notes.filter((note) =>
     note.title.toLowerCase().includes(title)
