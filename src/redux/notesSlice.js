@@ -44,7 +44,7 @@ export const fetchNoteDataAsync = createAsyncThunk(
 const notesSlice = createSlice({
   name: "notes",
   initialState: {
-    notes: [],
+    notes: [{ id: 1, title: "first" }],
   },
   reducers: {
     clearAllNote: (state) => {
